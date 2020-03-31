@@ -1,11 +1,16 @@
 import tensorflow as tf
 import tensorflow_datasets
 from transformers import *
+from transformers.modeling_tf_bert import TFBertForSequenceClassification
+import numpy as np
 
+
+log_dir = 'logs'
 # Load dataset, tokenizer, model from pretrained model/vocabulary
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 model = TFBertForSequenceClassification.from_pretrained('bert-base-cased')
 data = tensorflow_datasets.load('glue/mrpc')
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
 # Prepare dataset for GLUE as a tf.data.Dataset instance
 train_dataset = glue_convert_examples_to_features(data['train'], tokenizer, max_length=128, task='mrpc')
@@ -20,8 +25,8 @@ metric = tf.keras.metrics.SparseCategoricalAccuracy('accuracy')
 model.compile(optimizer=optimizer, loss=loss, metrics=[metric])
 
 # Train and evaluate using tf.keras.Model.fit()
-history = model.fit(train_dataset, epochs=2, steps_per_epoch=115,
-                    validation_data=valid_dataset, validation_steps=7)
+history = model.fit(train_dataset, epochs=2, steps_per_epoch=5,
+                    validation_data=valid_dataset, validation_steps=2, callbacks= [tensorboard_callback])
 
 # Load the TensorFlow model in PyTorch for inspection
 model.save_pretrained('./save/')
