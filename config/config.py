@@ -13,4 +13,3 @@ else :
 
 with open (os.path.join(os.path.dirname(cur_file), file_name) )as f:
     Config = yaml.load(f)
-print(Config)
