@@ -4,11 +4,11 @@
 # In[21]:
 
 
-from keras.layers import Embedding
-from keras import Sequential 
-from keras.layers import Flatten , Dense
-from tensorflow.keras.datasets import imdb
-from keras import preprocessing
+from tensorflow.keras.layers import Embedding
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Flatten , Dense
+from tensorflow.tensorflow.keras.datasets import imdb
+from tensorflow.keras import preprocessing
 
 
 # In[24]:

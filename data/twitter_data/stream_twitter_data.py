@@ -20,6 +20,8 @@ class StdOutListener(StreamListener):
     def __init__(self, output_path):
         self.output_path = output_path
 
+
+
     def on_data(self, data):
         data_dict = json.loads(data)
         if data_dict['truncated'] :

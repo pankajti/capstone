@@ -26,7 +26,7 @@ class HistoricalDataCollector :
     def collect_data(self):
         all_tweets = []
         try:
-            for tweet in tweepy.Cursor(api.search,q=self.keyword ,count=5,
+            for tweet in tweepy.Cursor(api.search,q=self.keyword ,count=300,
                                        lang="en",
                                        since=self.collection_date, exclude_replies=True,tweet_mode = "extended",filter="retweets").items():
                 print(tweet.full_text)
@@ -44,7 +44,7 @@ class HistoricalDataCollector :
 
 import os
 if __name__ == '__main__':
-    collection_time = dt.datetime.now() - dt.timedelta(1)
+    collection_time = dt.datetime.now() - dt.timedelta(7)
     collection_date = collection_time.strftime('%Y-%-m-%d')
     keyword = '#Election2020'
     collection_path = '../american_election/historical_data_{}_{}.csv'.format(keyword, collection_time.strftime('%Y-%-m-%d-%HH'))
