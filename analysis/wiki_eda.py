@@ -1,4 +1,14 @@
 import pandas as pd
+
+from tensorflow import keras
+from tensorflow import compiler
+
+from tensorflow.keras import Sequential
+
+model  =  Sequential ()
+
+
+
 import os
 root_dir = r'/Users/pankaj/Library/Mobile Documents/com~apple~CloudDocs/Capstone/Wikipedia Data'
 #root_dir = r'/Users/pankaj/dev/git/smu/capstone/data/wikipedia/Wikipedia Data'
